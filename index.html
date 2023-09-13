@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>&#x110;&#x103;ng nh&#x1EAD;p - Login</title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="TemplatesAdmin/Default/css/all.min.css" />
+    <link rel="stylesheet" href="TemplatesAdmin/Default/css/login.css" />
+    <script src="lib/jquery/dist/jquery.js"></script>
+
+    
+</head>
+<body>
+    
+
+
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+
+        <div class="user_card">
+            
+            <div class="logo">
+                <img src="TemplatesAdmin/Default/images/logo.png" />
+            </div>
+           
+            <div class="d-flex justify-content-center form_container">
+
+
+                <form method="post" id="myform" class="login_container" style="width:100%;" action="Login">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input autofocus type="text" class="form-control input_user" placeholder="Tài Khoản" data-val="true" data-val-email="The Email Address field is not a valid e-mail address." data-val-required="The Email Address field is required." id="UserName" name="UserName" value="">
+                    </div>
+                    <div class="input-group mb-2">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="Password" class="form-control input_pass" placeholder="Mật Khẩu" data-val="true" data-val-required="The Password field is required." id="Password" name="Password">
+                        <input type="hidden" id="token_recaptcha" name="TokenRecaptcha">
+                    </div>
+
+                    <div class="text-danger small" id="MessageErrorLogin"></div>
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8KXnYX6FHj5FpaLWn5wEVmNgoaBBPJk8J3XH1i1lvL3G10_wh-M1hovjNJ4o828g-8_EgvL1yInk_QOkbZUv-oAY_k0sgjUthIJvQfSGr_A5nMjyvA5j-XB3gg7tKy5uquLAJq3nxvAdzwJOOHYASck" /></form>
+            </div>
+            <div class="d-flex justify-content-center mt-3 login_container">
+                <button id="send" type="button" name="button" class="btn login_btn">Đăng nhập</button>
+            </div>
+            <div class="mt-5">
+                <div class="d-flex justify-content-center links small text-center">
+                    Copyright 2020 <br /> © TRUNG T&#xC2;M PH&#xC1;T H&#xC0;NH PHIM V&#xC0; CHI&#x1EBE;U B&#xD3;NG T&#x1EC8;NH &#x110;&#x1EAE;K L&#x1EAE;K
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display:none">
+    <div></div>
+    <div></div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        
+
+        $("#send").click(function (e) {
+            
+            CheckLogin();
+            
+        });
+
+        $('input').keypress(function (e) {
+            if (e.which == 13) {
+
+                CheckLogin();
+                return false;    //<---- Add this line
+            }
+        });
+
+
+    });
+
+    function CheckLogin() {
+        var UserName = $("#UserName").val();
+        var Password = $("#Password").val();
+        if (UserName == null || UserName.trim() == "") {
+            $("#MessageErrorLogin").html("Tài khoản không được để trống");
+        } else if (Password == null || Password.trim() == "") {
+            $("#MessageErrorLogin").html("Mật khẩu không được để trống");
+        } else {
+            
+            $("#myform").submit();
+        }
+    }
+
+
+
+</script>
+
+
+    <script src="lib/js/popper.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    
+	 <script>
+        with ((console && console._commandLineAPI) || {}) {     
+        console.log('\n %cDừng lại!\n %cĐây là một tính năng của trình duyệt dành cho các nhà phát triển. Nếu ai đó bảo bạn sao chép-dán nội dung nào đó vào đây để bật một tính năng của Hệ thống Website hoặc "hack" tài khoản của người khác, thì đó là hành vi lừa đảo và sẽ khiến họ có thể truy cập vào tài khoản Hệ thống Website của bạn.', 'font: 40pt sans-serif;margin-top:10px; font-weight: bold; color: #F00; text-shadow: 1px 1px #000, -1px -1px #000, -1px 1px #000, 1px -1px #000','font: 20pt sans-serif;');
+      }
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lfy8PwkAAAAAC5IHp-cii7yYQE1w2XCrFasMTOp"></script>
+    
+    <script>
+
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6Lfy8PwkAAAAAC5IHp-cii7yYQE1w2XCrFasMTOp', { action: 'submit' }).then(function (token) {
+                $("#token_recaptcha").val(token);
+            });
+        });
+
+    </script>
+    
+</body>
+</html>
